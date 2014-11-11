@@ -5,10 +5,10 @@ Outputs words which appear at least 100 times in the input in the input file “
 
 ****************************************************
 
-** $ javac -classpath ** **/home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d** **top_count_classes TopCount.java**
+** $ javac** **-classpath ** **/home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d** **top_count_classes TopCount.java**
 
 
-**$ jar** **-cvf topcount.jar** **-C top_count_classes/ . ** 
+**$ jar** **-cvf topcount.jar** **-C** **top_count_classes/ . ** 
 
 added manifest
 adding: org/(in = 0) (out= 0)(stored 0%)
