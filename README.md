@@ -1,7 +1,7 @@
 HadoopMapReduce
 ===============
 
-**Outputs** words which appear at least 100 times in the input in the input file “vanrikki-stool.txt”
+Outputs words which appear at least 100 times in the input in the input file “vanrikki-stool.txt”
 
 $ javac -classpath /home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d top_count_classes TopCount.java
 
@@ -15,7 +15,7 @@ adding: org/hwone/TopCount$TokenizerMapper.class(in = 1753) (out= 761)(deflated 
 adding: org/hwone/TopCount.class(in = 1853) (out= 991)(deflated 46%)
 adding: org/hwone/TopCount$IntSumReducer.class(in = 1768) (out= 754)(deflated 57%)
 
-$ hadoop jar topcount.jar org.hwone.TopCount input output
+$ **hadoop jar topcount.jar org.hwone.TopCount input** **output**
 
 
 14/10/27 17:20:00 INFO input.FileInputFormat: Total input paths to process : 1
