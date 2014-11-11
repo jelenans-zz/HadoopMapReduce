@@ -3,12 +3,80 @@ HadoopMapReduce
 
 Outputs words which appear at least 100 times in the input in the input file “vanrikki-stool.txt”
 
+****************************************************
+$ hadoop namenode -format
+
+
+14/10/27 15:19:38 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = ubuntu/127.0.1.1
+STARTUP_MSG:   args = [format]
+STARTUP_MSG:   version = 1.2.1
+STARTUP_MSG:   build = https://svn.apache.org/repos/asf/hadoop/common/branches/branch-1.2 -r 1503152; compiled by 'mattf' on Mon Jul 22 15:23:09 PDT 2013
+STARTUP_MSG:   java = 1.7.0_65
+************************************************************/
+14/10/27 15:19:39 INFO util.GSet: Computing capacity for map BlocksMap
+14/10/27 15:19:39 INFO util.GSet: VM type       = 64-bit
+14/10/27 15:19:39 INFO util.GSet: 2.0% max memory = 1013645312
+14/10/27 15:19:39 INFO util.GSet: capacity      = 2^21 = 2097152 entries
+14/10/27 15:19:39 INFO util.GSet: recommended=2097152, actual=2097152
+14/10/27 15:19:41 INFO namenode.FSNamesystem: fsOwner=hadoop
+14/10/27 15:19:42 INFO namenode.FSNamesystem: supergroup=supergroup
+14/10/27 15:19:42 INFO namenode.FSNamesystem: isPermissionEnabled=true
+14/10/27 15:19:42 INFO namenode.FSNamesystem: dfs.block.invalidate.limit=100
+14/10/27 15:19:42 INFO namenode.FSNamesystem: isAccessTokenEnabled=false accessKeyUpdateInterval=0 min(s), accessTokenLifetime=0 min(s)
+14/10/27 15:19:42 INFO namenode.FSEditLog: dfs.namenode.edits.toleration.length = 0
+14/10/27 15:19:42 INFO namenode.NameNode: Caching file names occuring more than 10 times 
+14/10/27 15:19:43 INFO common.Storage: Image file /tmp/hadoop-hadoop/dfs/name/current/fsimage of size 112 bytes saved in 0 seconds.
+14/10/27 15:19:43 INFO namenode.FSEditLog: closing edit log: position=4, editlog=/tmp/hadoop-hadoop/dfs/name/current/edits
+14/10/27 15:19:43 INFO namenode.FSEditLog: close success: truncate to 4, editlog=/tmp/hadoop-hadoop/dfs/name/current/edits
+14/10/27 15:19:43 INFO common.Storage: Storage directory /tmp/hadoop-hadoop/dfs/name has been successfully formatted.
+14/10/27 15:19:43 INFO namenode.NameNode: SHUTDOWN_MSG: 
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at ubuntu/127.0.1.1
+************************************************************/
+
+****************************************************
+$ start-all.sh
+
+****************************************************
+
+starting namenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-namenode-ubuntu.out
+localhost: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-ubuntu.out
+localhost: starting secondarynamenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-secondarynamenode-ubuntu.out
+starting jobtracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-jobtracker-ubuntu.out
+localhost: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-ubuntu.out
+starting namenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-namenode-ubuntu.out
+localhost: starting datanode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-datanode-ubuntu.out
+localhost: starting secondarynamenode, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-secondarynamenode-ubuntu.out
+starting jobtracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-jobtracker-ubuntu.out
+localhost: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/../logs/hadoop-hadoop-tasktracker-ubuntu.out
+
+****************************************************
+$ hadoop dfsadmin -safemode leave
+
+Safe mode is OFF
+
+
+****************************************************
+$ hadoop fs -mkdir input
+
+****************************************************
+
+$ hadoop fs -put vanrikki-stool.txt input
+
+
 
 ****************************************************
 
 $ javac -classpath /home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d top_count_classes TopCount.java 
 
+****************************************************
+
 $ jar -cvf topcount.jar -C top_count_classes/ . 
+
+****************************************************
 
 added manifest
 adding: org/(in = 0) (out= 0)(stored 0%)
@@ -17,7 +85,11 @@ adding: org/hwone/TopCount$TokenizerMapper.class(in = 1753) (out= 761)(deflated 
 adding: org/hwone/TopCount.class(in = 1853) (out= 991)(deflated 46%)
 adding: org/hwone/TopCount$IntSumReducer.class(in = 1768) (out= 754)(deflated 57%)
 
-$ hadoop jar topcount.jar org.hwone.TopCount input output_question1_b 
+****************************************************
+
+$ hadoop jar topcount.jar org.hwone.TopCount input output 
+
+****************************************************
 
 14/10/27 17:20:00 INFO input.FileInputFormat: Total input paths to process : 1
 14/10/27 17:20:00 INFO util.NativeCodeLoader: Loaded the native-hadoop library
@@ -63,9 +135,12 @@ $ hadoop jar topcount.jar org.hwone.TopCount input output_question1_b
 14/10/27 17:21:23 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1502007296
 14/10/27 17:21:23 INFO mapred.JobClient:     Map output records=18890
 
+****************************************************
 
 
-$ hadoop fs -cat output_question1_b/part-r-00000 
+$ hadoop fs -cat output/part-r-00000 
+
+****************************************************
 
 ei	262
 hän	340
