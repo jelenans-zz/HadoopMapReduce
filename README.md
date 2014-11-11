@@ -6,11 +6,9 @@ Outputs words which appear at least 100 times in the input in the input file “
 
 ****************************************************
 
-** $ javac** **-**
-**classpath /home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d** **top_count_classes TopCount.java**
+$ javac -classpath /home/hadoop/hadoop-1.2.1/hadoop-core-1.2.1.jar:/home/hadoop/hadoop-1.2.1/lib/commons-cli-1.2.jar -d top_count_classes TopCount.java 
 
-
-**$ jar** **-cvf topcount.jar -C top_count_classes/ . ** 
+$ jar -cvf topcount.jar -C top_count_classes/ . 
 
 added manifest
 adding: org/(in = 0) (out= 0)(stored 0%)
@@ -19,8 +17,7 @@ adding: org/hwone/TopCount$TokenizerMapper.class(in = 1753) (out= 761)(deflated 
 adding: org/hwone/TopCount.class(in = 1853) (out= 991)(deflated 46%)
 adding: org/hwone/TopCount$IntSumReducer.class(in = 1768) (out= 754)(deflated 57%)
 
-**$ hadoop jar topcount.jar org.hwone.TopCount input** **output**
-
+$ hadoop jar topcount.jar org.hwone.TopCount input output_question1_b 
 
 14/10/27 17:20:00 INFO input.FileInputFormat: Total input paths to process : 1
 14/10/27 17:20:00 INFO util.NativeCodeLoader: Loaded the native-hadoop library
@@ -66,7 +63,9 @@ adding: org/hwone/TopCount$IntSumReducer.class(in = 1768) (out= 754)(deflated 57
 14/10/27 17:21:23 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1502007296
 14/10/27 17:21:23 INFO mapred.JobClient:     Map output records=18890
 
-**$ hadoop fs** **-cat output/part-r-00000**
+
+
+$ hadoop fs -cat output_question1_b/part-r-00000 
 
 ei	262
 hän	340
