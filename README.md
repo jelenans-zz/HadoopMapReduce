@@ -16,7 +16,8 @@ HadoopMapReduce
 
 "hadoop fs -copyToLocal output_question1 output" 
 
--For copying standard output and standard error to a file  use "command &> file"
+-For copying standard output and standard error to a file  use:
+"some_command &> file"
 
 
 
