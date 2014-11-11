@@ -57,6 +57,8 @@ localhost: starting tasktracker, logging to /home/hadoop/hadoop-1.2.1/libexec/..
 ****************************************************
 $ hadoop dfsadmin -safemode leave
 
+****************************************************
+
 Safe mode is OFF
 
 
