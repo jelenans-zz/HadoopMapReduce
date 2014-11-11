@@ -6,6 +6,7 @@ Outputs words which appear at least 100 times in the input in the input file “
 ****************************************************
 $ hadoop namenode -format
 
+****************************************************
 
 14/10/27 15:19:38 INFO namenode.NameNode: STARTUP_MSG: 
 /************************************************************
