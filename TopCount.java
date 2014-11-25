@@ -39,7 +39,7 @@ public class TopCount {
     }
   }
   
-  public static class IntSumReducer 
+  public static class Combiner
        extends Reducer<Text,IntWritable,Text,IntWritable> {
     private IntWritable result = new IntWritable();
 
@@ -54,6 +54,25 @@ public class TopCount {
       context.write(key, result);
     }
   }
+  
+  public static class IntSumReducer 
+       extends Reducer<Text,IntWritable,Text,IntWritable> {
+    private IntWritable result = new IntWritable();
+
+    public void reduce(Text key, Iterable<IntWritable> values, 
+                       Context context
+                       ) throws IOException, InterruptedException {
+      int sum = 0;
+      for (IntWritable val : values) {
+        sum += val.get();
+      }
+      if(sum>=100)
+      {
+         result.set(sum);
+         context.write(key, result);
+      }
+    }
+  }
 
   public static void main(String[] args) throws Exception {
     Configuration conf = new Configuration();
@@ -65,7 +84,7 @@ public class TopCount {
     Job job = new Job(conf, "TopCount");
     job.setJarByClass(TopCount.class);
     job.setMapperClass(TokenizerMapper.class);
-    job.setCombinerClass(IntSumReducer.class);
+    job.setCombinerClass(Combiner.class);
     job.setReducerClass(IntSumReducer.class);
     job.setOutputKeyClass(Text.class);
     job.setOutputValueClass(IntWritable.class);
